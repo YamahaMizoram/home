@@ -1,0 +1,27 @@
+.menu{
+    margin: 1em;
+    width: 40px;
+}
+.menu:after,
+.menu:before,
+.menu div {
+    background-color: rgba(0,0,0,0.7);
+    border-radius: 3px;
+    content: '';
+    display: block;
+    height: 5px;
+    margin: 7px 0;
+    transition: all .2s ease-in-out;
+}
+/* Move the upper bar */
+.menu:hover:before {
+    transform: translateY(12px), rotate(135deg);
+}
+/* Move the lower bar */
+.menu:hover:after {
+    transform: translateY(-12px), rotate(-135deg);
+}
+/* Make the mid bar fade out */
+.menu:hover div {
+    transform: scale(0);
+}
