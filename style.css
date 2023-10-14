@@ -101,6 +101,7 @@ button{
     top: 360px;
     right: 1000px;
     display: flex;
+    object-fit: contain;
 }
 .card4{
     background-image: url(r15v3.jpeg);
