@@ -93,10 +93,10 @@ button{
     top: 360px;
     right: 770px;
     display: flex;
-    object-fit: contain;
+   
 }
 .card3{
-    background-image: url(Service.png);
+    background-image: url(serviceman.jpg);
     position: absolute;
     top: 360px;
     right: 1000px;
