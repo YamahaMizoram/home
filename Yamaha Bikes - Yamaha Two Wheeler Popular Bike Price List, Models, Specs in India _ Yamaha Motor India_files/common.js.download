@@ -1,0 +1,310 @@
+function check_element(e) {
+    var t = document.getElementsByTagName("*");
+    t.length;
+    var a = 100 / t.length;
+    if ($(e).on()) {
+        var o = a + Number(document.getElementById("progress_width").value);
+        document.getElementById("progress_width").value = o, $("#bar1").animate({ width: o + "%" }, 10, function() { "100%" == document.getElementById("bar1").style.width && $(".progress").fadeOut("slow") })
+    } else set_ele(e)
+}
+
+function set_ele(e) { check_element(e) }
+
+function setWhatsappHref() { 768 > $(window).width() ? $("#whatsapp-url").attr("href", "whatsapp://send?text=" + window.location.href) : $("#whatsapp-url").attr("href", "https://web.whatsapp.com/send?text=" + window.location.href) }
+
+function getPageInitFunctionId() { return $(".content").attr("data-ref") }
+
+function search(e) {
+    if (13 == event.keyCode) {
+        var t = "site-search.html?q=" + e;
+        location.href = t
+    }
+}
+$(window).scroll(SectionInView), document.onreadystatechange = function(e) {
+    if ("interactive" == document.readyState)
+        for (var t = document.getElementsByTagName("*"), a = 0, o = t.length; a < o; a++) set_ele(t[a])
+}, $(".accept_cookies").click(function(e) {
+    $("#cookie_consent").toggle("slow");
+    var e = location.hostname;
+    //e.preventDefault();
+    e.includes("www.") && (e = e.split("www.")[1]), "yamaha-motor-india.com" == e ? $.cookie("cookie_consent", "yes", { domain: e, path: "/", expires: 365, secure: !0 }) : $.cookie("cookie_consent", "yes", { domain: e, path: "/", expires: 365 }), location.reload()
+}), $(document).ready(function(e) {
+    "yes" != $.cookie("cookie_consent") && $("#cookie_consent").removeClass("d-none"), $(".no-ipad-redirection").on("click", function(e) { screen.width < 900 && screen.width > 500 && e.preventDefault() }), $(".lazy").Lazy({ scrollDirection: "vertical", effect: "fadeIn", onError: function(e) { console.log("error loading " + e.data("src")) } }), $(".light-theme-color").length > 0 && ($("#scroolTop").addClass("footer__top--dark"), $("#scroolTop svg").addClass("svg--dark")), screen.width > 1199 ? $("#sideInfo").addClass("is-active") : ($(".dropdown-toggle.no-small-device-dropdown .mega-dropdown").hide(), $(".dropdown-toggle.no-small-device-dropdown").removeClass("dropdown-toggle"), $(".dropdown-toggle a.no-link-redirection").attr("href", "#")), hide = !0, $("body").on("click", function() { hide && $(".dropdown-toggle").removeClass("show"), hide = !0 }), $("body").on("click", ".dropdown-toggle", function() {
+        var e = $(this).parent();
+        if (e.hasClass("show")) return $(e).removeClass("show"), !1;
+        $(e).removeClass("show"), e.toggleClass("show"), hide = !1
+    }), $(".dropdown").click(function() { $(".dropdown-toggle").removeClass("show") }), setWhatsappHref(), $("#sideInfoBtn").click(function() { $(this).hasClass("is-active") ? ($(this).removeClass("is-active"), $("#sideInfo").removeClass("is-active")) : ($(this).addClass("is-active"), $("#sideInfo").addClass("is-active")) }), $(".videoUrl").on("click", function(e) {
+        var t = $(this).attr("href");
+        $("#videoUrl").attr("src", t + "?autoplay=1"), e.preventDefault()
+    }), $(".ymccxVideoUrl").on("click", function(e) {
+        var t = $(this).attr("href");
+        $("#ymccxVideoUrl").attr("src", t + "?autoplay=1"), e.preventDefault()
+    }), $(".modal-close").on("click", function(e) { setTimeout(function() { $("#videoUrl").attr("src", ""), $("#ymccxVideoUrl").attr("src", "") }, 500) }), $(".side-info__link").tooltip({ boundary: "window" }), $("#scroolTop").click(function() { return $("body,html").animate({ scrollTop: 0 }, 800), !1 }), $("#menuMob").click(function() { return $("body").hasClass("menu-active") ? $("body").removeClass("menu-active") : $("body").addClass("menu-active"), !1 });
+    var function_id = getPageInitFunctionId();
+    if (void 0 != function_id && "" != function_id) try { eval(function_id)() } catch (e) {}
+    $("#search-btn").click(function() {
+        var e = "site-search.html?q=" + $("#searchTermsHead").val();
+        location.href = e
+    }), $(".card-tabs__link").click(function() { $(".card-tabs__link").removeClass("is-active"), $(this).addClass("is-active"); var e = $(this).attr("href"); return "tabs-all" == e ? $(".card-tabs__block").removeClass("d-none") : ($(".card-tabs__block").addClass("d-none"), $("." + e).removeClass("d-none")), !1 }), $(".imgthumb__item img").click(function() {
+        var e = $(this).attr("src"),
+            t = $(this).attr("alt");
+        $("#imgthumb").attr("src", e), $("#imgText").attr("src", t), $("#imgText").html(t), $(".imgthumb__item").removeClass("is-active"), $(this).closest(".imgthumb__item").addClass("is-active")
+    })
+});
+var path = window.location.pathname;
+"/" == path.charAt(path.length - 1) && (path = path.substring(0, path.length - 1)), "/" != path.charAt(0) && (path = "/" + path);
+var parentUrl = "";
+
+function isScrolledIntoView(e) {
+    var t = $(window).scrollTop(),
+        a = t + $(window).height(),
+        o = $(e).offset().top;
+    return o + $(e).height() <= a && o >= t
+}
+
+function SectionInView() { isScrolledIntoView($("#footer-bottom")) ? $("#sideInfo, #sideInfoBtn").addClass("side-info--footer") : $("#sideInfo, #sideInfoBtn").removeClass("side-info--footer") }
+$.each($(".breadcrumb li > a"), function(e, t) { 1 == e && (parentUrl = t.getAttribute("href")) }), "" == parentUrl ? $(".nav a[href='" + path + "']").addClass("active") : ("/" == parentUrl.charAt(parentUrl.length - 1) && (parentUrl = parentUrl.substring(0, parentUrl.length - 1)), "/" != parentUrl.charAt(0) && (parentUrl = "/" + parentUrl), $(".nav a[href='" + parentUrl + "']").addClass("active")), $("#bannerCarousel").owlCarousel({ items: 1, animateOut: "fadeOut", nav: !0, dots: !0, autoplay: !0, autoplayTimeout: 1e4, merge: !0, loop: !0, margin: 0, video: !0, lazyLoad: !0, center: !0, autoHeight: !0, navText: ['<svg viewBox="0 0 490.787 490.787" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-prev"></use></svg>', '<svg viewBox="0 0 490.8 490.8" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-next"></use></svg>'] }), $(document).ready(function() { $("#more-awards").hide(), $("#award-know-btn").click(function() { $("#more-awards").slideDown(1e3), $("#award-know-btn").hide() }) }), $(document).ready(function() {
+    $(".2021,.2022").hide(), $('input[type="radio"]').click(function() {
+        var e = $(this).attr("value"),
+            t = $("." + e);
+        $(".box-mgt").not(t).hide(), $(t).show()
+    })
+});
+var bc = new BroadcastChannel("test_channel");
+bc.onmessage = function(e) { e.data && e.data.url === window.location.href && alert("You cannot open the same page in 2 tabs") }, bc.postMessage(window.location.href);
+$('#galleryCarousel-weekend1').owlCarousel({
+    items: 2,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    loop: true,
+    margin: 10,
+    video: true,
+    lazyLoad: true,
+    center: false,
+    autoHeight: true,
+    navText: ['<svg viewBox="0 0 490.787 490.787" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-prev"></use></svg>', '<svg viewBox="0 0 490.8 490.8" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-next"></use></svg>'],
+    responsive: {
+        0: {
+            items: 1,
+            center: true
+        },
+        576: {
+            items: 2
+        },
+        992: {
+            items: 2
+        }
+    }
+});
+$('#galleryCarousel-inmrc').owlCarousel({
+    items: 2,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    loop: true,
+    margin: 10,
+    video: true,
+    lazyLoad: true,
+    center: false,
+    autoHeight: true,
+    navText: ['<svg viewBox="0 0 490.787 490.787" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-prev"></use></svg>', '<svg viewBox="0 0 490.8 490.8" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-next"></use></svg>'],
+    responsive: {
+        0: {
+            items: 1,
+            center: true
+        },
+        576: {
+            items: 1
+        },
+        992: {
+            items: 1
+        }
+    }
+});
+$('#galleryCarousel-media').owlCarousel({
+    items: 2,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    loop: true,
+    margin: 10,
+    video: true,
+    lazyLoad: true,
+    center: false,
+    autoHeight: true,
+    navText: ['<svg viewBox="0 0 490.787 490.787" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-prev"></use></svg>', '<svg viewBox="0 0 490.8 490.8" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-next"></use></svg>'],
+    responsive: {
+        0: {
+            items: 1,
+            center: true
+        },
+        576: {
+            items: 1
+        },
+        992: {
+            items: 2,
+            nav: true
+        }
+    }
+});
+$('#galleryCarousel-trackday').owlCarousel({
+    items: 2,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    loop: true,
+    margin: 10,
+    video: true,
+    lazyLoad: true,
+    center: false,
+    autoHeight: true,
+    navText: ['<svg viewBox="0 0 490.787 490.787" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-prev"></use></svg>', '<svg viewBox="0 0 490.8 490.8" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-next"></use></svg>'],
+    responsive: {
+        0: {
+            items: 1,
+            center: true
+        },
+        576: {
+            items: 2
+        },
+        992: {
+            items: 3
+        }
+    }
+});
+
+$('#galleryCarousel-trackday-2022').owlCarousel({
+    items: 2,
+    // nav: true,
+    dots: true,
+    autoplay: true,
+    loop: true,
+    margin: 10,
+    video: true,
+    lazyLoad: true,
+    center: false,
+    autoHeight: true,
+    navText: ['<svg viewBox="0 0 490.787 490.787" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-prev"></use></svg>', '<svg viewBox="0 0 490.8 490.8" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-next"></use></svg>'],
+    responsive: {
+        0: {
+            items: 1,
+            center: true
+        },
+        576: {
+            items: 2
+        },
+        992: {
+            items: 3
+        }
+    }
+});
+
+$('#galleryCarousel-trackday-2023').owlCarousel({
+    items: 2,
+    nav: true,
+    dots: false,
+    autoplay: true,
+    loop: false,
+    margin: 10,
+    video: true,
+    lazyLoad: true,
+    center: false,
+    autoHeight: true,
+    navText: ['<svg viewBox="0 0 490.787 490.787" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-prev"></use></svg>', '<svg viewBox="0 0 490.8 490.8" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-next"></use></svg>'],
+    responsive: {
+        0: {
+            items: 1,
+            center: true
+        },
+        576: {
+            items: 2
+        },
+        992: {
+            items: 3,
+            center: true
+        }
+    }
+});
+
+$('#galleryCarousel-overnight-2023').owlCarousel({
+    items: 2,
+    // nav: true,
+    dots: true,
+    autoplay: true,
+    loop: false,
+    margin: 10,
+    video: true,
+    arrows: false,
+    lazyLoad: true,
+    center: false,
+    autoHeight: true,
+    navText: ['<svg viewBox="0 0 490.787 490.787" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-prev"></use></svg>', '<svg viewBox="0 0 490.8 490.8" class="svg" aria-hidden="true"><use class="svg" xlink:href="#svg-arrow-next"></use></svg>'],
+    responsive: {
+        0: {
+            items: 1,
+            center: true
+        },
+        576: {
+            items: 2
+        },
+        992: {
+            items: 3,
+            center: false
+        }
+    }
+});
+
+$(function() {
+    $('#accordionExample').on('shown.bs.collapse', function(e) {
+        var offset = $('.collapse.show').offset();
+        if (offset) {
+            $('html,body').animate({
+                scrollTop: $('#accordionExample .accordion__link').offset().top - 20
+            }, 500);
+        }
+    });
+});
+
+$(function() {
+    $('#faq-accordion').on('shown.bs.collapse', function(e) {
+        var offset = $('.collapse.show').offset();
+        if (offset) {
+            $('html,body').animate({
+                scrollTop: $('#faq-accordion .accordion__link').offset().top - 20
+            }, 500);
+        }
+    });
+});
+$(document).ready(function() {
+    $(".banner-overide a").click(function(event) {
+        var scrollTo = $(this).attr("href");
+
+        if ($(window).width() > 767) {
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top - 200
+            }, 1000);
+            return false;
+        } else {
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top - 40
+            }, 1000);
+            return false;
+        }
+        event.preventDefault();
+    });
+    $(".fixed-icon").hide();
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > -10) {
+            $(".fixed-icon").show();
+        } else {
+            $(".fixed-icon").hide();
+        }
+    });
+});
+$(document).ready(function() {
+    let url = $(location).attr('href');
+    let urlKey = url.replace(/\/\s*$/, "").split('/').pop();
+    var urls = 'https://www.yamaha-motor-india.com/' + urlKey;
+    var tagurls = document.getElementById('myLink').href = urls;
+});
